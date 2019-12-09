@@ -114,25 +114,26 @@ class NoteViewController: UIViewController {
     }
 
     
-    // MARK:- didFinishPickingMediaWithInfo
-//    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-//        print("didFinishPickingMediaWithInfo")
-//        let selectedImage = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
-//        imageToConvert = selectedImage
-//        convertImageToText()
-////         Now that we've got the image we can close the UIImagePicker using the dismiss method
-//        dismiss(animated: true, completion: nil)
-//    }
+     //MARK:- didFinishPickingMediaWithInfo
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        print("didFinishPickingMediaWithInfo")
+        let selectedImage = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
+        imageToConvert = selectedImage
+        imageView.image = selectedImage
+        convertImageToText()
+//         Now that we've got the image we can close the UIImagePicker using the dismiss method
+        dismiss(animated: true, completion: nil)
+    }
   
   
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        print("This is just before the prepare for unwind")
-        if segue.identifier == "UnwindFromNoteSave" {
+        //if segue.identifier == "UnwindFromNoteSave" {
             print("preparing for unwind")
             note = Note(title: titleTextField.text!, body: noteTextView.text)
+        print(note.title!) // this does print the updated title
     
-        }
+        //}
     }
 }
 

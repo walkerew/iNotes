@@ -32,7 +32,7 @@
                                     <color key="titleColor" red="0.021931465720000001" green="0.27159720659999997" blue="0.4907637239" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="signOutPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="u2O-l8-Fwn"/>
+                                    <action selector="signOutPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="gAe-vM-rmD"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -50,7 +50,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="iAp-43-Als"/>
                     <connections>
-                        <outlet property="imageView" destination="Uma-kH-Rxr" id="2J7-a6-ePe"/>
+                        <outlet property="imageView" destination="Uma-kH-Rxr" id="cuY-VW-gNn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
