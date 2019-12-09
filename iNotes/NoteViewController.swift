@@ -19,6 +19,8 @@ class NoteViewController: UIViewController {
     var note: Note!
     var notesArray: [Note] = []
     var noteIndex: Int!
+    var notebooksArray: [Notebook] = []
+    
     var imagePicker = UIImagePickerController()
     var imageToConvert: UIImage!
     var textRecognizer: VisionTextRecognizer!

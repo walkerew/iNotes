@@ -262,7 +262,7 @@
                     <navigationItem key="navigationItem" id="lw1-Rk-Cg2">
                         <barButtonItem key="rightBarButtonItem" title="Save" id="sMS-Zo-jwL">
                             <connections>
-                                <segue destination="BLv-hm-gXz" kind="unwind" unwindAction="unwindFromNotebookDetailViewControllerWithSegue:" id="uvN-iz-c4n"/>
+                                <segue destination="BLv-hm-gXz" kind="unwind" identifier="UnwindFromNotebookDetailVC" unwindAction="unwindFromNotebookDetailViewControllerWithSegue:" id="uvN-iz-c4n"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
