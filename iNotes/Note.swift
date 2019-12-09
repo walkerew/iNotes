@@ -22,6 +22,6 @@ class Note {
     }
     
     convenience init() {
-        self.init(title: "", body: "")
+        self.init(title: "Untitled", body: "")
     }
 }

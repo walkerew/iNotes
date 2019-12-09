@@ -13,8 +13,12 @@ class NoteViewController: UIViewController {
     
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var noteTextView: UITextView!
+    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var cancelButton: UIBarButtonItem!
     
     var note: Note!
+    var notesArray: [Note] = []
+    var noteIndex: Int!
     var imagePicker = UIImagePickerController()
     var imageToConvert: UIImage!
     var textRecognizer: VisionTextRecognizer!
@@ -43,6 +47,7 @@ class NoteViewController: UIViewController {
     }
     
     func runTextRecognition(with image: UIImage) {
+        print("runTextRecognition called")
         let visionImage = VisionImage(image: image)
         textRecognizer.process(visionImage) { (features, error) in
             self.processResult(from: features, error: error)
@@ -50,10 +55,21 @@ class NoteViewController: UIViewController {
     }
     
     func processResult(from text: VisionText?, error: Error?) {
-        
+        print("processResult called")
+        guard let features = text else {return}
+        for block in features.blocks {
+            for line in block.lines {
+                for element in line.elements {
+                    note.body?.append(element.text)
+                }
+            }
+        }
+        updateUserInterface()
+        print(note.body)
     }
     
     func convertImageToText() {
+        print("convertImageToText called")
         runTextRecognition(with: imageToConvert)
     }
     
@@ -94,28 +110,35 @@ class NoteViewController: UIViewController {
             navigationController!.popViewController(animated: true)
         }
     }
+
     
-    
+    // MARK:- didFinishPickingMediaWithInfo
+//    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+//        print("didFinishPickingMediaWithInfo")
+//        let selectedImage = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
+//        imageToConvert = selectedImage
+//        convertImageToText()
+////         Now that we've got the image we can close the UIImagePicker using the dismiss method
+//        dismiss(animated: true, completion: nil)
+//    }
+  
+  
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        print("This is just before the prepare for unwind")
         if segue.identifier == "UnwindFromNoteSave" {
             print("preparing for unwind")
-            note.title = titleTextField.text
+            note = Note(title: titleTextField.text!, body: noteTextView.text)
+    
         }
     }
 }
 
 extension NoteViewController: UINavigationControllerDelegate, UIImagePickerControllerDelegate {
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        let selectedImage = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
-        imageToConvert = selectedImage
-        // Now that we've got the image we can close the UIImagePicker using the dismiss method
-        dismiss(animated: true, completion: nil)
-        
-    }
+    
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        dismiss(animated: true, completion: nil)
+        //dismiss(animated: true, completion: nil)
     }
     
     func accessLibrary() {

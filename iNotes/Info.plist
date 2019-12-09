@@ -52,5 +52,9 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>NSCameraUsageDescription</key>
+	<string>iNotes uses the camera to convert your images to editable text.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>iNotes uses the photo library to convert your images to editable text.</string>
 </dict>
 </plist>
